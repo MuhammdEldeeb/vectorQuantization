@@ -180,6 +180,9 @@ public class Encoder {
         fillCode();
         String buffer = getBinaryStream();
         
+        //calculate number of bits of last integer
+        int last_int_bist = buffer.length()%31;
+        
 
     }
     
