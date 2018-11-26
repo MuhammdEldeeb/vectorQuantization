@@ -2,8 +2,10 @@ package mainPackage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.HashMap;
@@ -18,12 +20,13 @@ public class Encoder {
         private ArrayList<Node> list;
 	private FileReader reader;
         private File fileObj;
-        private Formatter newFile1;
+        private Formatter newFile;
 	
 	
     public Encoder(String str) {
         freq = new HashMap<Character , Integer>();
         list = new ArrayList<Node>();
+        code = new HashMap<Character , String>();
         try {
             fileObj = new File(str);
             reader = new FileReader(fileObj.getPath());
@@ -148,7 +151,7 @@ public class Encoder {
         for(Node n : list){
             Character c = n.symbol;
             String s = n.code;
-            code.put(c, s);
+            code.put(c , s);
         }
     }
     
@@ -182,7 +185,48 @@ public class Encoder {
         
         //calculate number of bits of last integer
         int last_int_bist = buffer.length()%31;
-        
+                
+        // write the overhead and the binary stream to the compressed file
+        String newFilePath = fileObj.getPath().substring(0, (int) (fileObj.getPath().length()-4)) + "_compressed.txt";
+        FileOutputStream fos= null;
+        ObjectOutputStream oos = null;
+            try {
+                fos = new FileOutputStream(newFilePath); // create an object of fileOutputStream
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "somthing went wrong with creating an object of fileOutputStream", "Erorr", JOptionPane.PLAIN_MESSAGE);
+            }
+            try {
+                oos = new ObjectOutputStream(fos); // create an object of ObjectOutputStream
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "somthing went wrong with creating an object of ObjectOutputStream", "Erorr", JOptionPane.PLAIN_MESSAGE);
+            }
+            try {
+                // write the overhead
+                oos.writeInt(last_int_bist); // #of bits of the last int
+                for(Character ch: code.keySet()){
+                    String val = code.get(ch);
+                    oos.writeChar(ch); // write all characters
+                    oos.writeChars(val); // write all codes of all characters
+                }
+                oos.writeChar(';');
+                
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "somthing went writting the overhead", "Erorr", JOptionPane.PLAIN_MESSAGE);
+            }
+            
+            
+            
+            try {
+                oos.close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "somthing went wrong with closing an object of ObjectOutputStream", "Erorr", JOptionPane.PLAIN_MESSAGE);
+            }
+            try {
+                fos.close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "somthing went wrong with closing an object of ObjectOutputStream", "Erorr", JOptionPane.PLAIN_MESSAGE);
+            }
 
     }
     

@@ -27,7 +27,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         filechooser = new JFileChooser();
-        filechooser.setCurrentDirectory(new File("D:\\Java work-space\\std_huffman"));
+        filechooser.setCurrentDirectory(new File("D:\\Java work-space\\std_huffman\\"));
         filechooser.setFileFilter(new FileNameExtensionFilter("text files", "txt"));
         combressable = false;
     }
