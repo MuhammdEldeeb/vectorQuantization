@@ -1,20 +1,17 @@
 package mainPackage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class Encoder {
+public class Encoder 
+{
         private HashMap<Character , Integer>freq; // freq of each cahr in the file
         private HashMap<Character , String>code; // code of each cahr in the file
         private ArrayList<Node> list;
@@ -23,7 +20,8 @@ public class Encoder {
         private Formatter newFile;
 	
 	
-    public Encoder(String str) {
+    public Encoder(String str)
+    {
         freq = new HashMap<Character , Integer>();
         list = new ArrayList<Node>();
         code = new HashMap<Character , String>();
