@@ -133,15 +133,13 @@ public class Main extends javax.swing.JFrame {
     private void compress_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compress_btnActionPerformed
         // TODO add your handling code here:
         if(combressable){
-                Encoder en = new Encoder(filePath);
-                en.compress();
-                combressable = false;
-                loadFile_lb.setText("Done");
-                
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "there is no file chossen", "Erorr", JOptionPane.PLAIN_MESSAGE);
-            }
+            Encoder en = new Encoder(filePath);
+            en.compress();
+            combressable = false;
+            loadFile_lb.setText("Done");
+        }else{
+            JOptionPane.showMessageDialog(null, "there is no file chossen", "Erorr", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_compress_btnActionPerformed
 
     private void decompress_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decompress_btnActionPerformed

@@ -162,8 +162,10 @@ public class Encoder {
             try {
                 re = new FileReader(fileObj.getPath());
                 int ch;
+                
                 while((ch = re.read()) != -1){
-                    buffer += code.get(ch);
+                    char c = (char)(ch);
+                    buffer += code.get(c);
                 }
                 re.close();
             } catch (Exception ex) {
@@ -185,6 +187,8 @@ public class Encoder {
         
         //calculate number of bits of last integer
         int last_int_bist = buffer.length()%31;
+        // calculat number of iteration
+        int iterationNumber = buffer.length()/31;
                 
         // write the overhead and the binary stream to the compressed file
         String newFilePath = fileObj.getPath().substring(0, (int) (fileObj.getPath().length()-4)) + "_compressed.txt";
@@ -208,15 +212,42 @@ public class Encoder {
                     oos.writeChar(ch); // write all characters
                     oos.writeChars(val); // write all codes of all characters
                 }
-                oos.writeChar(';');
+                oos.writeChar(';'); // the end of the overhead
+                
+                // write the binary stream
+                int limit = 0;
+                String str ;
+                int temp;
+                System.out.println("buffer ==> " + buffer);
+                System.out.println("size ==> " + buffer.length());
+                System.out.println("#iteration ==> " + iterationNumber);
+                
+                for(int i=0 ; i<iterationNumber; i++){
+                    str = buffer.substring(limit, limit+31);
+                    //System.out.println(str);
+                    limit += 31;
+                    //convert every 31 bit into integer
+                    temp = Integer.parseInt(str , 2);
+                    System.out.println(str + " ==> " + temp);
+                    // write the iteger
+                    oos.writeInt(temp);
+                }
+                // write last integer
+                str = buffer.substring(limit);
+                System.out.println(last_int_bist);
+                for(int i=last_int_bist ; i<31; i++){
+                    str += '0';
+                }
+                temp = Integer.parseInt(str , 2);
+                System.out.println(str + " ==> " + temp);
+                oos.writeInt(temp);
                 
                 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "somthing went writting the overhead", "Erorr", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "somthing went wrong during writting the compressed data", "Erorr", JOptionPane.PLAIN_MESSAGE);
             }
             
-            
-            
+            // close objects assosiated with files
             try {
                 oos.close();
             } catch (Exception ex) {
