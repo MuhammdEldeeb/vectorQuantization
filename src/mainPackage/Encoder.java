@@ -16,10 +16,6 @@ public class Encoder {
         private HashMap<Character , Integer>freq; // freq of each cahr in the file
         private HashMap<Character , String>code; // code of each cahr in the file
         private ArrayList<Node> list;
-//	public ArrayList<String> dict;
-//	public ArrayList<Integer>code; // to store all tags 
-//	private String p; // previous character
-//	private char c; // current character
 	private FileReader reader;
         private File fileObj;
         private Formatter newFile1;
@@ -156,6 +152,25 @@ public class Encoder {
         }
     }
     
+    public String getBinaryStream()
+    {
+        String buffer = "";
+        FileReader re = null; // object to read the original data content
+            try {
+                re = new FileReader(fileObj.getPath());
+                int ch;
+                while((ch = re.read()) != -1){
+                    buffer += code.get(ch);
+                }
+                re.close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "somthing went wrong with opening file to store binary stream", "Erorr", JOptionPane.PLAIN_MESSAGE);
+            }
+            
+            
+        return buffer;
+    }
+    
     public void compress()
     {
         // pre functions should be called 
@@ -163,50 +178,9 @@ public class Encoder {
         setCode(list);
         displayList();
         fillCode();
+        String buffer = getBinaryStream();
         
-        int trivial = 0;
-        FileReader re = null;
-        String temp = "";
-        try {
-            re = new FileReader(fileObj.getPath());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "somthing went wrong with opening file to store binary stream", "Erorr", JOptionPane.PLAIN_MESSAGE);
-        }
-        // create a new file to stor stream of binary data as Integers
-        int ch;
-        try {
-            while((ch = re.read()) != -1) {
-                // get freq of each char in the file i want to compresss
-                 
-                 if(temp.length()<31){  
-                    temp += code.get(ch);
-                 }else{
-                     String str = temp.substring(0, 31);
-                     int intValue = Integer.parseInt(str, 2);
-                 }
-            }
-        } catch (Exception e) {
-         JOptionPane.showMessageDialog(null, "somthing went wrong with reading fom file", "Erorr", JOptionPane.PLAIN_MESSAGE);
-        }
-        try {
-            reader.close();
-        } catch (Exception ex) {
-           JOptionPane.showMessageDialog(null, "somthing went wrong with closing file", "Erorr", JOptionPane.PLAIN_MESSAGE);
-        }
-        
-        // create a file to store the charcters and their codes     
-        String newFilePath1 = fileObj.getPath().substring(0, (int) (fileObj.getPath().length()-4)) + "_Helper.txt";
-        try {
-            newFile1 = new Formatter(newFilePath1);
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "somthing went wrong with creating the helper file", "Erorr", JOptionPane.PLAIN_MESSAGE);
-        }
-        for (Node n : list)
-        {
-            newFile1.format("%s %s ", n.symbol , n.code);
-        }
-        newFile1.close();
+
     }
     
 }
