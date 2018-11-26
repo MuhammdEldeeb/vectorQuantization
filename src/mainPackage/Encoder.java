@@ -208,7 +208,9 @@ public class Encoder
                 for(Character ch: code.keySet()){
                     String val = code.get(ch);
                     oos.writeChar(ch); // write all characters
+                    oos.writeChar(':');
                     oos.writeChars(val); // write all codes of all characters
+                    oos.writeChar(':');
                 }
                 oos.writeChar(';'); // the end of the overhead
                 

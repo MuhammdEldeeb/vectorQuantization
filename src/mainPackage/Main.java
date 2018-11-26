@@ -146,7 +146,10 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(combressable){
             Decoder d = new Decoder(filePath);
-            d.decompress();
+            d.readCompressedData();
+            //d.decompress();
+            //d.setCode();
+            //d.displayCode();
             combressable = false;
             loadFile_lb.setText("Done");
         }else{
