@@ -230,6 +230,13 @@ public class Encoder
                     str = buffer.substring(limit, limit+31);
                     //System.out.println(str);
                     limit += 31;
+                    StringBuilder s1 = new StringBuilder(str);
+                    str = s1.reverse().toString();
+                    for(int j =str.length(); j<31; j++){
+                        str += '0';
+                    }
+                    StringBuilder s2 = new StringBuilder(str);
+                    str = s2.reverse().toString();
                     //convert every 31 bit into integer
                     temp = Integer.parseInt(str , 2);
                     System.out.println(str + " ==> " + temp);
