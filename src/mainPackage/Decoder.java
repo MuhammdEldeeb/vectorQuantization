@@ -50,7 +50,7 @@ public class Decoder
             for(int i=0 ; i<arr.length; i +=2){
                 code.put(arr[i].charAt(0), arr[i+1]);
             }
-            System.out.println(code);
+            System.out.println(code);// print to the console
         }
 	
 	public void readCompressedData() {
@@ -70,10 +70,13 @@ public class Decoder
                 /*************************/
                 setCode(str);
                 /************************/
-                //int temp;
-                //temp = ois.readInt();
+                int temp;
                 
-                
+                for(int i=0; i< 8; i++ ){
+                    temp = ois.readInt();
+                    System.out.println(temp);
+                    
+                }
                 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "somthing went wrong during reading compressed file", "Erorr", JOptionPane.PLAIN_MESSAGE);

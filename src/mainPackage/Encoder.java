@@ -205,6 +205,10 @@ public class Encoder
             try {
                 // write the overhead
                 oos.writeInt(last_int_bist); // #of bits of the last int
+                if(last_int_bist == 0)
+                    oos.writeInt(iterationNumber); // #of ints
+                else
+                    oos.writeInt(iterationNumber + 1);
                 for(Character ch: code.keySet()){
                     String val = code.get(ch);
                     oos.writeChar(ch); // write all characters
@@ -232,15 +236,17 @@ public class Encoder
                     // write the iteger
                     oos.writeInt(temp);
                 }
-                // write last integer
-                str = buffer.substring(limit);
-                System.out.println(last_int_bist);
-                for(int i=last_int_bist ; i<31; i++){
-                    str += '0';
+                if(last_int_bist > 0 ){
+                    // write last integer
+                    str = buffer.substring(limit);
+                    System.out.println(last_int_bist);
+                    for(int i=last_int_bist ; i<31; i++){
+                        str += '0';
+                    }
+                    temp = Integer.parseInt(str , 2);
+                    System.out.println(str + " ==> " + temp);
+                    oos.writeInt(temp);
                 }
-                temp = Integer.parseInt(str , 2);
-                System.out.println(str + " ==> " + temp);
-                oos.writeInt(temp);
                 
                 
             } catch (Exception ex) {
