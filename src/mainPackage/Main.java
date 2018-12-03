@@ -6,9 +6,11 @@
 package mainPackage;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -27,8 +29,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         filechooser = new JFileChooser();
-        filechooser.setCurrentDirectory(new File("D:\\Java work-space\\std_huffman\\"));
-        filechooser.setFileFilter(new FileNameExtensionFilter("text files", "txt"));
+        filechooser.setCurrentDirectory(new File("D:\\Java work-space\\vectorQuantization\\images"));
+        //filechooser.setFileFilter(new FileNameExtensionFilter("text files", "txt"));
         combressable = false;
     }
 
@@ -46,14 +48,16 @@ public class Main extends javax.swing.JFrame {
         loadFile_lb = new javax.swing.JLabel();
         compress_btn = new javax.swing.JButton();
         decompress_btn = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Standard Huffman");
+        jLabel1.setText("Vector Quantizer");
 
-        load_btn.setText("load file...");
+        load_btn.setText("Browse");
         load_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 load_btnActionPerformed(evt);
@@ -70,32 +74,39 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        decompress_btn.setText("Decopress");
+        decompress_btn.setText("Decompress");
         decompress_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decompress_btnActionPerformed(evt);
             }
         });
 
+        jLabel2.setText("CodeBook Size :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(65, 65, 65)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(compress_btn)
-                            .addComponent(load_btn))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(compress_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(load_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loadFile_lb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(decompress_btn, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(loadFile_lb, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(decompress_btn))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,11 +117,15 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loadFile_lb, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(load_btn))
-                .addGap(34, 34, 34)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(decompress_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(compress_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(compress_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decompress_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
 
         pack();
@@ -122,39 +137,53 @@ public class Main extends javax.swing.JFrame {
         
         if(returnval == JFileChooser.APPROVE_OPTION){
             filePath = filechooser.getSelectedFile().toString();
-            loadFile_lb.setText(filechooser.getSelectedFile().getName() + " file is successfully selected");
+            loadFile_lb.setText(filechooser.getSelectedFile().getName() + " image is successfully selected");
             combressable = true;
         }else{
-            loadFile_lb.setText("no file loaded");
+            loadFile_lb.setText("no image selected");
             combressable = false;
         }
     }//GEN-LAST:event_load_btnActionPerformed
 
     private void compress_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compress_btnActionPerformed
         // TODO add your handling code here:
-        if(combressable){
-            Encoder en = new Encoder(filePath);
-            en.compress();
-            combressable = false;
-            loadFile_lb.setText("Done");
-        }else{
-            JOptionPane.showMessageDialog(null, "there is no file chossen", "Erorr", JOptionPane.PLAIN_MESSAGE);
+        int codebookSize = (int) jSpinner1.getValue();
+        if(codebookSize <= 0){
+            codebookSize = 8;
         }
+            try {
+                if(combressable){
+                    Encodeer en = new Encodeer();
+                    en.Compress(2 , 2, codebookSize , filePath);
+                    combressable = false;
+                    loadFile_lb.setText("Done");
+                }else{
+                    JOptionPane.showMessageDialog(null, "there is no image chossen", "Erorr", JOptionPane.PLAIN_MESSAGE);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }//GEN-LAST:event_compress_btnActionPerformed
 
     private void decompress_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decompress_btnActionPerformed
         // TODO add your handling code here:
-        if(combressable){
-            Decoder d = new Decoder(filePath);
-            //d.readCompressedData();
-            d.decompress();
-            //d.setCode();
-            //d.displayCode();
-            combressable = false;
-            loadFile_lb.setText("Done");
-        }else{
-           JOptionPane.showMessageDialog(null, "there is no file chossen", "Erorr", JOptionPane.PLAIN_MESSAGE);
-        }
+        
+            try {
+                if(combressable){
+                    Decoder d = new Decoder();
+                    d.Decompress(filePath);
+                    combressable = false;
+                    loadFile_lb.setText("Done");
+                }else{
+                JOptionPane.showMessageDialog(null, "there is no image chossen", "Erorr", JOptionPane.PLAIN_MESSAGE);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }//GEN-LAST:event_decompress_btnActionPerformed
 
     /**
@@ -196,6 +225,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton compress_btn;
     private javax.swing.JButton decompress_btn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel loadFile_lb;
     private javax.swing.JButton load_btn;
     // End of variables declaration//GEN-END:variables

@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java%20work-space/std_huffman/src/mainPackage/Decoder.java</file>
-            <file>file:/D:/Java%20work-space/std_huffman/src/mainPackage/Main.java</file>
-            <file>file:/D:/Java%20work-space/std_huffman/src/mainPackage/Encoder.java</file>
+            <file>file:/D:/Java%20work-space/vectorQuantization/src/mainPackage/Encodeer.java</file>
+            <file>file:/D:/Java%20work-space/vectorQuantization/src/mainPackage/Main.java</file>
+            <file>file:/D:/Java%20work-space/vectorQuantization/src/mainPackage/Image.java</file>
+            <file>file:/D:/Java%20work-space/vectorQuantization/src/mainPackage/Decoder.java</file>
         </group>
     </open-files>
 </project-private>

@@ -23,26 +23,32 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="267" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="284" max="-2" attributes="0"/>
+              <EmptySpace pref="67" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jSpinner1" min="-2" pref="235" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="compress_btn" min="-2" max="-2" attributes="0"/>
-                          <Component id="load_btn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="compress_btn" min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="load_btn" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="loadFile_lb" alignment="1" min="-2" pref="193" max="-2" attributes="0"/>
-                          <Component id="decompress_btn" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="loadFile_lb" min="-2" pref="217" max="-2" attributes="0"/>
+                          <Component id="decompress_btn" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,12 +62,17 @@
                   <Component id="loadFile_lb" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="load_btn" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="decompress_btn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="compress_btn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="compress_btn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="decompress_btn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,12 +84,12 @@
           <Font name="Arial" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Standard Huffman"/>
+        <Property name="text" type="java.lang.String" value="Vector Quantizer"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="load_btn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="load file..."/>
+        <Property name="text" type="java.lang.String" value="Browse"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="load_btnActionPerformed"/>
@@ -102,11 +113,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="decompress_btn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Decopress"/>
+        <Property name="text" type="java.lang.String" value="Decompress"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decompress_btnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CodeBook Size :"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
